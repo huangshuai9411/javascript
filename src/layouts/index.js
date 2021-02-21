@@ -1,13 +1,15 @@
 import React, { useMemo } from 'react';
 import { Link, useLocation } from 'umi';
-import { Layout, Menu } from 'antd';
-import config from './config';
+import { useLocalStorageState } from '@/hooks';
+import { Button, Layout, Menu } from 'antd';
+import config, { routeChange } from './config';
 import styles from './index.less';
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
+const filter = list => list.filter(({ hidden }) => !hidden);
 
-const getMenus = list => list.map(({ key, title, icon, children }) => {
+const getMenus = list => filter(list).map(({ key, title, icon, children }) => {
   if (children?.length) {
     return <SubMenu key={key} icon={icon} title={title}>
     { getMenus(children) }
@@ -23,7 +25,10 @@ function BasicLayout(props) {
   const selectedKeys = useMemo(() => [location.pathname], [location]);
   const defaultOpenKeys = useMemo(() => {
     const pathname = location.pathname.split('/').filter(e => e);
-    pathname.pop();
+    if (pathname.length > 1) {
+      pathname.pop();
+    }
+
     return pathname.reduce((prev, cur) => {
       if (!prev.length) {
         return [`/${cur}`];
@@ -31,28 +36,24 @@ function BasicLayout(props) {
       return prev.concat(prev[prev.length - 1] + `/${cur}`);
     }, []);
   }, [location]);
-  
+  const [collapsed, onCollapse] = useLocalStorageState('sider-collapsed');
+
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sider collapsible>
-        <div className={styles.logo}>我爱学前端</div>
-        <Menu theme="dark" className={styles["layout-sider-menu"]} mode="inline" selectedKeys={selectedKeys} defaultOpenKeys={defaultOpenKeys}>
+      <Sider collapsible defaultCollapsed={!!collapsed} onCollapse={onCollapse}>
+        <div className={styles.logo}>frontend</div>
+        <Menu theme="dark" className={styles['layout-sider-menu']} mode="inline" selectedKeys={selectedKeys} defaultOpenKeys={defaultOpenKeys}>
         {
-          getMenus(config)
+          config |> getMenus
         }
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        <Header className={styles["layout-header"]}>
+        <Header className={styles['layout-header']}>
+          <Button onClick={() => routeChange('back')} type="text">上一节</Button>
+          <Button onClick={() => routeChange('next', defaultOpenKeys)} type="text">下一节</Button>
         </Header>
-        <Content
-          className={styles["layout-content"]}
-          style={{
-            margin: '14px 0 14px 14px',
-            padding: 24,
-            minHeight: 280,
-          }}
-        >
+        <Content className={styles['layout-content']}>
           { props.children }
         </Content>
       </Layout>

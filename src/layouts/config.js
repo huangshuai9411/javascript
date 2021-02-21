@@ -1,4 +1,6 @@
 import React from 'react';
+import { message } from 'antd';
+import { history } from 'umi';
 import {
   AppstoreOutlined,
   FileTextOutlined,
@@ -40,7 +42,7 @@ import {
   FormOutlined
 } from '@ant-design/icons';
 
-export default [{
+const routes = [{
   key: '/overview',
   title: '综述',
   icon: <AppstoreOutlined />,
@@ -52,6 +54,10 @@ export default [{
     key: '/overview/html',
     title: 'HTML',
     icon: <Html5Outlined />,
+    children: [{
+      key: '/overview/html/example',
+      hidden: true
+    }]
   }, {
     key: '/overview/css',
     title: 'CSS',
@@ -229,3 +235,34 @@ export default [{
     icon: <FormOutlined />,
   }],
 }];
+
+export default routes;
+export const routeChange = (direct, openKeys) => {
+  if (direct === 'back') {
+    return history.goBack();
+  }
+  let curRoute, index, siblings = [], keys = [...openKeys];
+
+  function findNextRoute(list) {
+    if (list?.length) {
+      const curKey = keys.shift();
+      siblings = list;
+      curRoute = list.find(({ key }, idx) => (index = idx, curKey === key));
+      if (keys.length && curRoute.children?.length) {
+        findNextRoute(list);
+      }
+    }
+  }
+  findNextRoute(routes);
+  if (!curRoute || !siblings.length) {
+    return message.error('未匹配到当前路由');
+  }
+
+  if (siblings[index + 1]) {
+    const nextRoute = siblings[index + 1];
+    return history.push(nextRoute.key);
+  }
+  // if (openKeys)
+  const [_, ...rest] = openKeys.reverse();
+  return routeChange(direct, rest.reverse());
+};

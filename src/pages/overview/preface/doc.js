@@ -1,7 +1,7 @@
 import hire1 from './1.png';
 import hire2 from './2.png';
+import { reference } from '@/util';
 
-const reference = string => `\`\`\`${string}\`\`\``;
 const JavaScript = reference('JavaScript');
 
 const docString = `
