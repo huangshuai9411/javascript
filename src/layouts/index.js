@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback, useState, useEffect } from 'react';
 import { Link, useLocation } from 'umi';
 import { useLocalStorageState } from '@/hooks';
 import { Button, Layout, Menu } from 'antd';
@@ -10,7 +10,7 @@ const { SubMenu } = Menu;
 const filter = list => list.filter(({ hidden }) => !hidden);
 
 const getMenus = list => filter(list).map(({ key, title, icon, children }) => {
-  if (children?.length) {
+  if (children?.length && children.filter(({hidden}) => !hidden).length) {
     return <SubMenu key={key} icon={icon} title={title}>
     { getMenus(children) }
     </SubMenu>
@@ -20,38 +20,47 @@ const getMenus = list => filter(list).map(({ key, title, icon, children }) => {
   </Menu.Item>
 });
 
+function splitPathname(location) {
+  const pathname = location.pathname.split('/').filter(e => e);
+  if (pathname.length > 1) {
+    pathname.pop();
+  }
+
+  return pathname.reduce((prev, cur) => {
+    if (!prev.length) {
+      return [`/${cur}`];
+    }
+    return prev.concat(prev[prev.length - 1] + `/${cur}`);
+  }, []);
+}
+
 function BasicLayout(props) {
   const location = useLocation();
-  const selectedKeys = useMemo(() => [location.pathname], [location]);
-  const defaultOpenKeys = useMemo(() => {
-    const pathname = location.pathname.split('/').filter(e => e);
-    if (pathname.length > 1) {
-      pathname.pop();
-    }
-
-    return pathname.reduce((prev, cur) => {
-      if (!prev.length) {
-        return [`/${cur}`];
-      }
-      return prev.concat(prev[prev.length - 1] + `/${cur}`);
-    }, []);
-  }, [location]);
+  const [openKeys, setOpenKeys] = useState(() => splitPathname(location));
+  const selectedKeys = useMemo(() => openKeys.filter(key => location.pathname.includes(key)).concat(location.pathname), [openKeys, location]);
   const [collapsed, onCollapse] = useLocalStorageState('sider-collapsed');
+  const onOpenChange = useCallback((openKeys) => {
+    setOpenKeys(openKeys);
+  }, []);
+  
+  useEffect(() => {
+    setOpenKeys(splitPathname(location));
+  }, [location]);
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible defaultCollapsed={!!collapsed} onCollapse={onCollapse}>
         <div className={styles.logo}>frontend</div>
-        <Menu theme="dark" className={styles['layout-sider-menu']} mode="inline" selectedKeys={selectedKeys} defaultOpenKeys={defaultOpenKeys}>
+        <Menu onOpenChange={onOpenChange} theme="dark" className={styles['layout-sider-menu']} mode="inline" selectedKeys={selectedKeys} openKeys={openKeys}>
         {
-          config |> getMenus
+          getMenus(config)
         }
         </Menu>
       </Sider>
       <Layout className="site-layout">
         <Header className={styles['layout-header']}>
-          <Button onClick={() => routeChange('back')} type="text">上一节</Button>
-          <Button onClick={() => routeChange('next', defaultOpenKeys)} type="text">下一节</Button>
+          <Button onClick={() => routeChange('back', location.pathname)} type="text">上一节</Button>
+          <Button onClick={() => routeChange('next', location.pathname)} type="text">下一节</Button>
         </Header>
         <Content className={styles['layout-content']}>
           { props.children }

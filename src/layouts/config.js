@@ -1,5 +1,4 @@
 import React from 'react';
-import { message } from 'antd';
 import { history } from 'umi';
 import {
   AppstoreOutlined,
@@ -237,32 +236,27 @@ const routes = [{
 }];
 
 export default routes;
-export const routeChange = (direct, openKeys) => {
-  if (direct === 'back') {
-    return history.goBack();
-  }
-  let curRoute, index, siblings = [], keys = [...openKeys];
 
-  function findNextRoute(list) {
-    if (list?.length) {
-      const curKey = keys.shift();
-      siblings = list;
-      curRoute = list.find(({ key }, idx) => (index = idx, curKey === key));
-      if (keys.length && curRoute.children?.length) {
-        findNextRoute(list);
-      }
+const flatRoutes = list => list.reduce((prev, { key, children }) => {
+  if (children?.length && children.filter(({hidden}) => !hidden).length) {
+    prev = prev.concat(flatRoutes(children));
+  } else {
+    prev.push(key);
+  }
+  return prev;
+}, []);
+const routeList = flatRoutes(routes);
+
+export const routeChange = (direct, pathname) => {
+  let index = routeList.findIndex(key => key === pathname);
+  if (~index) {
+    if (direct === 'back') {
+      index--;
+    } else {
+      index++;
+    }
+    if (routeList[index]) {
+      return history.push(routeList[index]);
     }
   }
-  findNextRoute(routes);
-  if (!curRoute || !siblings.length) {
-    return message.error('未匹配到当前路由');
-  }
-
-  if (siblings[index + 1]) {
-    const nextRoute = siblings[index + 1];
-    return history.push(nextRoute.key);
-  }
-  // if (openKeys)
-  const [_, ...rest] = openKeys.reverse();
-  return routeChange(direct, rest.reverse());
 };
