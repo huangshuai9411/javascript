@@ -1,7 +1,7 @@
 import React from 'react'
 import Markdown from '@/components/Markdown';
-import { example } from './doc';
-import styles from './style.less'
+import { example } from './dependency/doc';
+import styles from './dependency/style.less'
 
 export default function Example() {
   

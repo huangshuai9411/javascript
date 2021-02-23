@@ -3,8 +3,9 @@ import { history } from 'umi';
 import {
   AppstoreOutlined,
   FileTextOutlined,
+  ScheduleOutlined,
   Html5Outlined,
-  CodepenCircleOutlined,
+  PictureOutlined,
   CodeOutlined,
   CalculatorOutlined,
   KeyOutlined,
@@ -50,17 +51,30 @@ const routes = [{
     title: '前言',
     icon: <FileTextOutlined />,
   }, {
+    key: '/overview/prepare',
+    title: '准备工作',
+    icon: <ScheduleOutlined />,
+  }, {
     key: '/overview/html',
     title: 'HTML',
     icon: <Html5Outlined />,
     children: [{
+      key: '/overview/html/element',
+      title: 'HTML 元素',
+      icon: <Html5Outlined />,
+    }, {
       key: '/overview/html/example',
-      hidden: true
+      title: '网页结构',
+      icon: <Html5Outlined />,
+    }, {
+      key: '/overview/html/create',
+      title: '新建网页',
+      icon: <Html5Outlined />,
     }]
   }, {
     key: '/overview/css',
     title: 'CSS',
-    icon: <CodepenCircleOutlined />,
+    icon: <PictureOutlined />,
   }, {
     key: '/overview/javascript',
     title: 'Javascript',
@@ -257,6 +271,11 @@ export const routeChange = (direct, pathname) => {
     }
     if (routeList[index]) {
       return history.push(routeList[index]);
+    }
+  } else {
+    const parentPathname = pathname.replace(/\/[^\/]+$/, '');
+    if (parentPathname) {
+      routeChange(direct, parentPathname);
     }
   }
 };

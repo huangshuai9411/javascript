@@ -1,11 +1,8 @@
 import React from 'react';
-import Markdown from '@/components/Markdown';
-import docString from './doc';
-import styles from './style.less';
+import { Redirect } from 'umi';
 
-export default function Html() {
-  
-  return (<div className={styles.Html}>
-    <Markdown docString={docString} />
-  </div>)
+export default function Element() {
+  return (
+    <Redirect to="/overview/html/element" />
+  );
 }
