@@ -1,5 +1,7 @@
 import { reference } from '@/util';
 import styleImg from './style.png';
+import boxImg from './box.png';
+import cssPropImg from './css-prop.png';
 
 export const cssString1 = `
 #### CSS 简介
@@ -34,18 +36,18 @@ export const cssString4 = `
 
 ### CSS 选择器
 
-除了类名，选择器的种类各式各样，其目的就是能够把样式准确地应用到元素上。
+除了类名，选择器的种类各式各样，其目的都是为了把样式准确地应用到元素上。
 
 - 元素（标签）选择器
-${reference('html {color:black;} h1 {color:blue;} h2 {color:silver;}')}  定义全文档中某种标签的样式
+${reference('html {color:black;} h1 {color:blue;} h2 {color:silver;}')}  直接使用标签，定义文档中某种标签的样式
 - 选择器分组
-${reference('body, h2, p, table, th, td, pre, strong, em {color: gray;}')}  一次定义一组元素的样式
+${reference('body, .gray, p, #id, th, td, pre, a strong {color: gray;}')}  一次定义一组元素的样式
 - 类选择器
 ${reference('<p class="important"></p>')}  具有 important 类名的元素样式，类名前 + “.”，如 ${reference('.important{color: #fff}')}
 - id 选择器
 ${reference('<p id="important"></p>')}  具有 important 类名的元素样式，id 名前 + “#”，如 ${reference('#important{color: #fff}')}
 - 属性选择器
-${reference('a[title]')} 匹配具有 title 属性的 a 链接如 ${reference('<a title="">链接</a>')}；
+${reference('a[title]')} 匹配具有 title 属性的 a 链接如 ${reference('<a title="something">链接</a>')}；
 ${reference('a[title=bbb]')} 匹配 title 属性值为 bbb 的 a 链接如 ${reference('<a title="aaa">链接</a>')}
 - 子代选择器
 ${reference('div > a')} 匹配具有 div 标签的直接子元素 a， 如 ${reference('<div><a>匹配</a><p><a>隔着p不匹配</a></p></div>')}；
@@ -54,14 +56,39 @@ ${reference('div a')} 匹配具有 div 标签的内的所有元素 a， 如 ${re
 - 相邻元素选择器
 ${reference('h1 + p {margin-top:50px;}')} 匹配 h1 标签**紧随其后**的 p 标签如 ${reference('<div><h1></h1><p>能匹配</p></div>')}
 - 伪类 (Pseudo-classes)
-如锚点（即 a 标签）伪类：${reference('a:link {color: #FF0000}')}意思是没访问过的链接呈现红色字体
-${reference('a:visited {color: #00FF00}')} 访问过的链接呈现绿色字体
-${reference('a:hover {color: #FF00FF}')} 鼠标移动链接上呈现洋红字体
-${reference('a:active {color: #0000FF}')} 选定的链接上呈现蓝色字体
+如锚点（即 a 标签）伪类：${reference('a:link {color: #FF0000}')}: 意思是没访问过的链接；
+${reference('a:visited {color: #00FF00}')}:  访问过的链接；
+${reference('a:hover {color: #FF00FF}')}:  鼠标移动链接；
+${reference('a:active {color: #0000FF}')}:  选定的链接
 - 伪元素
 ${reference('p:first-line')} 段落标签内的第一行文字
 ${reference('h1:before')} 定义 h1 标签前面的内容，本身不占据网页空间。必须要有 content 定义。
 ${reference('h1:after')} 定义 h1 标签后面的内容，本身不占据网页空间。必须要有 content 定义。
 
 [详情可点击](https://www.w3school.com.cn/css/css_pseudo_elements.asp) 深入学习伪元素。
+
+### CSS 属性
+
+前面出现的结构 ${reference('h1 + p {margin-top:50px;}')} 里，${reference('margin-top:50px;')}就是一个 CSS 属性，定义了 h1标签后面的 p 标签样式——距离上面的块元素的外边距为 50 像素。
+
+- CSS 盒模型
+新建一个 html文件，贴入一下内容，保存后用浏览器打开。然后打开控制台 ELements 栏查看结果（[如何打开？](/overview/html/example)）。
+`;
+
+export const cssString5 = `
+单击 ${reference('<div class="container">这是内容</div>')} 标签查看 div 容器的样式。
+
+![div](${boxImg})
+
+在控制台右侧 Styles 栏我们能直观地看到 ${reference('.container')} 类定义的样式信息，右下角便是盒模型了。盒子由内向外，依次为内容区（蓝色）、内边距 padding （绿色）、边框 border（浅黄）、外边距 margin（橘黄）。
+
+数值排布上，我们对内外边距均用了 4 个不同的值，能很容易分辨出，数值分别对应边距的 上、右、下、左 4个方向。
+
+> 如果我们写作 ${reference('padding: 50px 60px 70px;')} 3 个值，甚至两个值 ${reference('padding: 50px 60px;')} 、一个值 ${reference('padding: 50px;')} 会是什么样呢？可以自己动手试试。
+
+鼠标点击控制台 CSS 属性值，通过键盘上下箭头调整数值大小，观察浏览器上的 div 容器发生的变化并总结规律。
+
+![div](${cssPropImg})
+
+[更多 CSS 属性学习](https://www.w3school.com.cn/css/css_padding.asp)
 `;

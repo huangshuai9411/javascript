@@ -1,7 +1,7 @@
 import React from 'react';
 import Markdown from '@/components/Markdown';
 import Code from '@/components/Code';
-import { cssString1, cssString2, cssString3, cssString4 } from './doc';
+import { cssString1, cssString2, cssString3, cssString4, cssString5 } from './doc';
 import { template } from '@/util';
 import styles from './style.less';
 
@@ -50,7 +50,28 @@ const codeString3 = template(`<!DOCTYPE html>
     <p>若夫日出而林霏开，云归而岩穴暝，晦明变化者，山间之朝暮也。野芳发而幽香，佳木秀而繁阴，风霜高洁，水落而石出者，山间之四时也。朝而往，暮而归，四时之景不同，而乐亦无穷也。</p>
     <img src="./cat.jpg" />
   </body>
-</html>`);
+</html>`, true);
+
+const codeString4 = template(`<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>醉翁亭记</title>
+    <style type="text/css">
+      .container{
+        height: 200px;
+        width: 200px;
+        border: 10px solid #000;
+        margin: 10px 20px 30px 40px;
+        padding: 50px 60px 70px 80px;
+        background-color: bisque;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">这是内容</div>
+  </body>
+</html>`, true);
 
 export default function Css() {
   
@@ -62,5 +83,7 @@ export default function Css() {
     <Markdown docString={cssString3} />
     <Code codeString={codeString3} />
     <Markdown docString={cssString4} />
+    <Code codeString={codeString4} />
+    <Markdown docString={cssString5} />
   </div>)
 }
