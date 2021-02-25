@@ -1,0 +1,102 @@
+.Login {
+  font-family: 'Helvetica Neue', sans-serif;
+  user-select: none;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  font-size: 16px;
+  color: green;
+  padding: 20px;
+  position: relative;
+  background: transparent;
+  padding-top: 50vh;
+  p {
+    text-indent: 2rem;
+    margin: 0 20px;
+  }
+  .Form {
+    position: absolute;
+    top: 15vh;
+    right: 10vw;
+    width: 400px;
+    height: 300px;
+    z-index: 10;
+    color: #fff;
+    :global {
+      .ant-form-item-label > label,
+      .ant-input-affix-wrapper,
+      .ant-form-item-explain.ant-form-item-explain-error {
+        color: green;
+      }
+      .ant-input::selection{
+        background-color: #fff;
+      }
+      .ant-form-item-explain-error .ant-input,
+      .ant-form-item-has-error .ant-input-affix-wrapper {
+        &:hover,
+        &:focus {
+          background-color: transparent;
+          box-shadow: none;
+        }
+      }
+      .ant-form-item-has-error .ant-input:hover {
+        background-color: transparent;
+        border: none;
+      }
+      .ant-input,
+      .ant-form-item-control-input-content,
+      .ant-input:before,
+      .ant-input:after,
+      .ant-input-affix-wrapper,
+      .ant-input-affix-wrapper:before,
+      .ant-input-affix-wrapper:after {
+        outline: none;
+        border: none;
+        background-color: transparent;
+        &:hover,
+        &:focus {
+          outline: none;
+          border-top: none;
+          box-shadow: none;
+        }
+      }
+      /* WebKit browsers */
+      .ant-input {
+        color: green;
+        -webkit-text-fill-color: green;
+        caret-color: green; /*光标颜色*/
+        &::-webkit-input-placeholder,
+        &:-moz-placeholder,
+        &::-moz-placeholder,
+        &:-ms-input-placeholder {
+          color: green;
+          -webkit-text-fill-color: green;
+          caret-color: green; /*光标颜色*/
+        }
+      }
+    }
+  }
+}
+.Background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  .preCode {
+    position: absolute;
+    overflow: visible;
+    top: 15vh;
+    left: 10vw;
+    font-size: 1.5em;
+    code {
+      background: transparent;
+      opacity: 0;
+      transition: opacity 3s;
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+}

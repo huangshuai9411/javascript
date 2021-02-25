@@ -3,6 +3,7 @@ import { Link, useLocation } from 'umi';
 import { useLocalStorageState } from '@/hooks';
 import { Button, Layout, Menu } from 'antd';
 import config, { routeChange } from './config';
+import Dropdown from './Dropdown';
 import styles from './index.less';
 
 const { Header, Sider, Content } = Layout;
@@ -34,6 +35,7 @@ function splitPathname(location) {
   }, []);
 }
 
+
 function BasicLayout(props) {
   const location = useLocation();
   const [openKeys, setOpenKeys] = useState(() => splitPathname(location));
@@ -46,19 +48,29 @@ function BasicLayout(props) {
   useEffect(() => {
     setOpenKeys(splitPathname(location));
   }, [location]);
+  
+  if (location.pathname === '/login') {
+    return props.children;
+  }
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible defaultCollapsed={!!collapsed} onCollapse={onCollapse}>
         <div className={styles.logo}>frontend</div>
-        <Menu onOpenChange={onOpenChange} theme="dark" className={styles['layout-sider-menu']} mode="inline" selectedKeys={selectedKeys} openKeys={openKeys}>
-        {
-          getMenus(config)
-        }
+        <Menu
+          onOpenChange={onOpenChange} 
+          theme="dark" 
+          className={styles['layout-sider-menu']} 
+          mode="inline" 
+          selectedKeys={selectedKeys} 
+          openKeys={openKeys}
+        >
+        { getMenus(config) }
         </Menu>
       </Sider>
       <Layout className="site-layout">
         <Header className={styles['layout-header']}>
+          <Dropdown />
           <Button onClick={() => routeChange('back', location.pathname)} type="text">上一节</Button>
           <Button onClick={() => routeChange('next', location.pathname)} type="text">下一节</Button>
         </Header>
