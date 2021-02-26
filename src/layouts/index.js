@@ -1,6 +1,7 @@
 import React, { useMemo, useCallback, useState, useEffect } from 'react';
 import { Link, useLocation } from 'umi';
 import { useLocalStorageState } from '@/hooks';
+import Helmet from '@/components/Helmet';
 import { Button, Layout, Menu } from 'antd';
 import config, { routeChange } from './config';
 import Dropdown from './Dropdown';
@@ -53,7 +54,8 @@ function BasicLayout(props) {
     return props.children;
   }
 
-  return (
+  return (<>
+    <Helmet />
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible defaultCollapsed={!!collapsed} onCollapse={onCollapse}>
         <div className={styles.logo}>frontend</div>
@@ -79,7 +81,7 @@ function BasicLayout(props) {
         </Content>
       </Layout>
     </Layout>
-  );
+  </>);
 }
 
 export default BasicLayout;

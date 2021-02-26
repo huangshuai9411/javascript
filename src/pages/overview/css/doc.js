@@ -31,7 +31,7 @@ export const cssString4 = `
 
 但是为了可读性维护性，命名尽量具有一定含义且和团队风格一致。
 
-> 其实标签上除了 style， class，还可以存在很多其他属性（标签上的键值对中，键名的统称）如 id，title，name……[可点击链接简单了解](https://www.w3school.com.cn/html/html_attributes.asp) 这些属性也可以用作 CSS 选择器，只是没特别的必要时，以类名为主要选择器。当然直接使用标签作为选择器也是没问题的。顾名思义，选择器针对的是一类元素集合，当多个元素都有相同的类名时，该类定义的样式将应用到这多个元素上。
+> 其实标签上除了 style，class，还可以存在很多其他属性（标签上的键值对中，键名的统称）如 id，title，name……[可点击链接简单了解](https://www.w3school.com.cn/html/html_attributes.asp) 这些属性也可以用作 CSS 选择器，只是没特别的必要时，以类名为主要选择器。当然直接使用标签作为选择器也是没问题的。顾名思义，选择器针对的是一类元素集合，当多个元素都有相同的类名时，该类定义的样式将应用到这多个元素上。
 
 
 ### CSS 选择器
@@ -91,4 +91,20 @@ export const cssString5 = `
 ![div](${cssPropImg})
 
 [更多 CSS 属性学习](https://www.w3school.com.cn/css/css_padding.asp)
+
+请务必结合实践来学习，用上面创建的 index.html 文件查看各个 CSS 属性的效果。然后实现 [Chrome 浏览器官网静态页面（无需交互功能）](https://www.google.cn/chrome/)
+
+实现官网至少需要用到的前述知识：
+
+- HTML 标签：div 块元素([什么是块元素？](https://www.baidu.com/))，行内元素 span， 行内块元素 button、img 等。
+- CSS 各种选择器，重复的样式用一种类名定义，可以应用在多个元素上面。
+- ${reference('background， background-x')} 一系列 [CSS 属性](http://home.ustc.edu.cn/~xie1993/css/css-background.html)。
+- ${reference('color，font-size，overflow，box-shadow')}，[flex 布局](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)。
+- 表单元素 ${reference('<input type="checkbox" />')}，及其 ${reference('outline')} 属性。
+- 锚点（即超链接 a 标签）
+- 外部样式表（刻意未讲，因为能查到，凡是能查到的东西，养成查阅的习惯）。
+- hover 伪类，鼠标手势
+
+忽略该网站的动效，请在三天左右独立实现上面的页面。如有问题请第一时间通过搜索解决，仍不能解决的，可来群里反馈求助。
+
 `;
