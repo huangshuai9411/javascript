@@ -2,7 +2,7 @@ import hire1 from './1.png';
 import hire2 from './2.png';
 import { reference } from '@/util';
 
-const JavaScript = reference('JavaScript');
+const JavaScript = reference('JavaScript') + '（后续章节简写为 JS ）';
 
 const docString = `
 ### **开头有话说**
@@ -47,6 +47,7 @@ ${JavaScript} 诞生之初，仅仅是作为脚本语言，处理一些简单的
 
 1. 作为开发者，搜索是一种十分重要的能力。
 - 铺开讲并不比自己查到的效果好。
+- 蓝色文本均为可点击跳转的链接，方便了解周边，文本中**黑色加粗的部分需要重视起来**。
 - 有些小伙伴更希望教程的重心放在普通人独自无法完成的核心问题上，而不是在一个细节上花很多时间铺开（甚至使人产生一个知识点繁多的假象），比如我这样的。
 - 我们不缺获得知识的途径，我们缺的是如何排除繁重的枝节，抓住核心路线，高效学习成长。
 - 最后仍旧不能解决的问题，我们通过微信群交流互助。

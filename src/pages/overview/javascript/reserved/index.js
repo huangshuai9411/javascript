@@ -26,17 +26,17 @@ const columns = Array(5).fill(0).map((_, index) => ({
   dataIndex: `key${index}`,
   render: value => <span className={classnames(styles[value], keywords.some(a => a.includes(value)) && styles.blue)}>{value}</span>
 }));
-const dataSource1 = keywords.map(row => row.reduce((prev, cur, index) => ({ ...prev, id: index, [`key${index}`]: cur }), {}));
-const dataSource2 = reserved.map(row => row.reduce((prev, cur, index) => ({ ...prev, id: index, [`key${index}`]: cur }), {}));
+const dataSource1 = keywords.map((row, id) => row.reduce((prev, cur, index) => ({ ...prev, [`key${index}`]: cur }), { id }));
+const dataSource2 = reserved.map((row, id) => row.reduce((prev, cur, index) => ({ ...prev, [`key${index}`]: cur }), { id }));
 
 export default function Reserved() {
 
   return (<div className={styles.Reserved}>
     <Markdown docString={docString1} />
-    <Table size="small" columns={columns} dataSource={dataSource1} pagination={false} showHeader={false} />
+    <Table rowKey="id" size="small" columns={columns} dataSource={dataSource1} pagination={false} showHeader={false} />
     <br />
     <Markdown docString={docString2} />
-    <Table size="small" columns={columns} dataSource={dataSource2} pagination={false} showHeader={false} />
+    <Table rowKey="id" size="small" columns={columns} dataSource={dataSource2} pagination={false} showHeader={false} />
     <br />
     <Markdown docString={docString3} />
   </div>)
