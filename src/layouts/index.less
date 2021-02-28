@@ -1,4 +1,4 @@
-.logo{
+.logo {
   height: 60px;
   color: #fff;
   line-height: 60px;
@@ -11,25 +11,27 @@
 }
 .layout-header {
   padding: 0;
-  button{
-    color: rgba(255,255,255,.6);
-    &:hover,&:focus{
+  button {
+    color: rgba(255, 255, 255, 0.6);
+    &:hover,
+    &:focus {
       color: #fff;
     }
   }
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  :global{
-    .ant-dropdown-trigger{
-      color: rgba(255,255,255,.6);
-      &:hover,&:focus{
+  :global {
+    .ant-dropdown-trigger {
+      color: rgba(255, 255, 255, 0.6);
+      &:hover,
+      &:focus {
         color: #fff;
       }
     }
   }
 }
-.layout-sider-menu{
+.layout-sider-menu {
   overflow: auto;
   height: calc(100vh - 108px);
   &::-webkit-scrollbar {
@@ -44,4 +46,7 @@
   margin: 14px 0 0 14px;
   padding: 24px;
   min-height: 280px;
+  button + button {
+    margin-left: 15px;
+  }
 }

@@ -12,6 +12,7 @@ import {
   DatabaseOutlined,
   BookOutlined,
   RetweetOutlined,
+  FunctionOutlined,
   BranchesOutlined,
   ControlOutlined,
   NodeIndexOutlined,
@@ -45,207 +46,211 @@ import {
 const routes = [{
   key: '/overview',
   title: '综述',
-  icon: < AppstoreOutlined / > ,
+  icon: <AppstoreOutlined />,
   children: [{
     key: '/overview/preface',
     title: '前言',
-    icon: < FileTextOutlined / > ,
+    icon: <FileTextOutlined />,
   }, {
     key: '/overview/prepare',
     title: '准备工作',
-    icon: < ScheduleOutlined / > ,
+    icon: <ScheduleOutlined />,
   }, {
     key: '/overview/html',
     title: 'HTML',
-    icon: < Html5Outlined / > ,
+    icon: <Html5Outlined />,
     children: [{
       key: '/overview/html/element',
       title: 'HTML 元素',
-      icon: < Html5Outlined / > ,
+      icon: <Html5Outlined />,
     }, {
       key: '/overview/html/example',
       title: '网页结构',
-      icon: < Html5Outlined / > ,
+      icon: <Html5Outlined />,
     }, {
       key: '/overview/html/create',
       title: '新建网页',
-      icon: < Html5Outlined / > ,
+      icon: <Html5Outlined />,
     }]
   }, {
     key: '/overview/css',
     title: 'CSS',
-    icon: < PictureOutlined / > ,
+    icon: <PictureOutlined />,
   }, {
     key: '/overview/javascript',
     title: 'Javascript',
-    icon: < CodeOutlined / > ,
+    icon: <CodeOutlined />,
     children: [{
       key: '/overview/javascript/reserved',
       title: '保留字',
-      icon: < KeyOutlined / > ,
+      icon: <KeyOutlined />,
     }, {
       key: '/overview/javascript/data-type',
       title: '数据类型',
-      icon: < DatabaseOutlined / > ,
+      icon: <DatabaseOutlined />,
     }, {
       key: '/overview/javascript/operator',
       title: '操作符',
-      icon: < CalculatorOutlined / > ,
+      icon: <CalculatorOutlined />,
     }]
   }]
 }, {
   key: '/lesson',
   title: '课程',
-  icon: < BookOutlined / > ,
+  icon: <BookOutlined />,
   children: [{
     key: '/lesson/condition',
-    title: '条件',
-    icon: < BranchesOutlined / > ,
+    title: '条件分支',
+    icon: <BranchesOutlined />,
   }, {
     key: '/lesson/loop',
-    title: '循环',
-    icon: < RetweetOutlined / > ,
+    title: '循环语句',
+    icon: <RetweetOutlined />,
+  }, {
+    key: '/lesson/function',
+    title: '函数',
+    icon: <FunctionOutlined />,
   }, {
     key: '/lesson/scope',
     title: '作用域',
-    icon: < ControlOutlined / > ,
+    icon: <ControlOutlined />,
   }, {
     key: '/lesson/prototype',
     title: '原型链',
-    icon: < NodeIndexOutlined / > ,
+    icon: <NodeIndexOutlined />,
   }, {
     key: '/lesson/async',
     title: '异步',
-    icon: < HistoryOutlined / > ,
+    icon: <HistoryOutlined />,
   }, {
     key: '/lesson/bom',
     title: 'BOM',
-    icon: < ChromeOutlined / > ,
+    icon: <ChromeOutlined />,
   }, {
     key: '/lesson/dom',
     title: 'DOM',
-    icon: < FolderOutlined / > ,
+    icon: <FolderOutlined />,
   }]
 }, {
   key: '/es6',
   title: 'ES6+',
-  icon: < RiseOutlined / > ,
+  icon: <RiseOutlined />,
 }, {
   key: '/frame',
   title: '流行框架',
-  icon: < FireOutlined / > ,
+  icon: <FireOutlined />,
   children: [{
     key: '/frame/jquery',
     title: 'JQuery',
-    icon: < FrownOutlined / > ,
+    icon: <FrownOutlined />,
   }, {
     key: '/frame/mvc',
     title: 'MVC 简介',
-    icon: < MehOutlined / > ,
+    icon: <MehOutlined />,
   }, {
     key: '/frame/react',
     title: 'React',
-    icon: < SmileOutlined / > ,
+    icon: <SmileOutlined />,
   }, {
     key: '/frame/vue',
     title: 'Vue',
-    icon: < SmileOutlined / > ,
+    icon: <SmileOutlined />,
   }, {
     key: '/frame/miniprogram',
     title: '小程序',
-    icon: < SmileOutlined / > ,
+    icon: <SmileOutlined />,
   }, {
     key: '/frame/ui',
     title: 'UI 框架',
-    icon: < BuildOutlined / > ,
+    icon: <BuildOutlined />,
   }],
 }, {
   key: '/practice',
   title: '实战练习',
-  icon: < EditOutlined / > ,
+  icon: <EditOutlined />,
   children: [{
     key: '/practice/create',
     title: '创建项目',
-    icon: < ProjectOutlined / > ,
+    icon: <ProjectOutlined />,
     children: [{
       key: '/practice/create/react',
       title: 'React 项目',
-      icon: < AppstoreAddOutlined / > ,
+      icon: <AppstoreAddOutlined />,
     }, {
       key: '/practice/create/vue',
       title: 'Vue 项目',
-      icon: < AppstoreAddOutlined / > ,
+      icon: <AppstoreAddOutlined />,
     }]
   }, {
     key: '/practice/submit',
     title: '实现数据提交',
-    icon: < CheckOutlined / > ,
+    icon: <CheckOutlined />,
   }, {
     key: '/practice/git',
     title: '代码管理',
-    icon: < CodeOutlined / > ,
+    icon: <CodeOutlined />,
   }],
 }, {
   key: '/advanced',
   title: '能力进阶',
-  icon: < ArrowUpOutlined / > ,
+  icon: <ArrowUpOutlined />,
   children: [{
     key: '/advanced/state',
     title: '状态管理',
-    icon: < TableOutlined / > ,
+    icon: <TableOutlined />,
     children: [{
       key: '/advanced/state/redux',
       title: 'Redux',
-      icon: < ThunderboltOutlined / > ,
+      icon: <ThunderboltOutlined />,
     }, {
       key: '/advanced/state/vuex',
       title: 'Vuex',
-      icon: < ThunderboltOutlined / > ,
+      icon: <ThunderboltOutlined />,
     }, {
       key: '/advanced/state/mobx',
       title: 'Mobx',
-      icon: < ThunderboltOutlined / > ,
+      icon: <ThunderboltOutlined />,
     }, {
       key: '/advanced/state/mobx-state-tree',
       title: 'MST',
-      icon: < ThunderboltOutlined / > ,
+      icon: <ThunderboltOutlined />,
     }]
   }, {
     key: '/advanced/webpack',
     title: '打包工具',
-    icon: < SettingOutlined / > ,
+    icon: <SettingOutlined />,
   }, {
     key: '/advanced/performance',
     title: '性能优化',
-    icon: < BarChartOutlined / > ,
+    icon: <BarChartOutlined />,
   }, {
     key: '/advanced/loader',
     title: '模块加载器',
-    icon: < ToolOutlined / > ,
+    icon: <ToolOutlined />,
   }, {
     key: '/advanced/plugin',
     title: '插件系统',
-    icon: < SelectOutlined / > ,
+    icon: <SelectOutlined />,
   }, {
     key: '/advanced/debugger',
     title: 'bug 调试',
-    icon: < BugOutlined / > ,
+    icon: <BugOutlined />,
   }, {
     key: '/advanced/npm',
     title: '发布模块',
-    icon: < CloudUploadOutlined / > ,
+    icon: <CloudUploadOutlined />,
   }, {
     key: '/advanced/node',
     title: '构建服务',
-    icon: < CloudServerOutlined / > ,
+    icon: <CloudServerOutlined />,
   }, {
     key: '/advanced/safety',
     title: '安全防护',
-    icon: < SafetyOutlined / > ,
+    icon: <SafetyOutlined />,
   }, {
     key: '/advanced/keep',
     title: '总结', // 可视化库，canvas，视频，音频，富文本，刷题，设计模式，计算机底层原理
-    icon: < FormOutlined / > ,
+    icon: <FormOutlined />,
   }],
 }];
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Table } from 'antd';
 import Markdown from '@/components/Markdown';
 import Code from '@/components/Code';
-import { docString1, docString2, docString3, docString4, docString5 } from './doc';
+import { docString1, docString2, docString3, docString4, docString5, docString6 } from './doc';
 import styles from './style.less';
 
 const getColumns = (title, index) => ({
@@ -29,12 +29,12 @@ const columns2 = ['操作符', '描述', '示例', '等价于'].map((title, inde
 }));
 const calculators = [
   ['=', '赋值', 'let x;  x = 5;'],
-  ['+=', '求和再赋值', 'x += 2', 'x = x + 2'],
-  ['-=', '求差再赋值', 'x -= 2', 'x = x - 2'],
-  ['*=', '求积再赋值', 'x *= 2', 'x = x * 2'],
-  ['/=', '求商再赋值', 'x /= 2', 'x = x / 2'],
-  ['%=', '求商再赋值', 'x %= 2', 'x = x % 2'],
-  ['**=', '求幂再赋值', 'x **= 2', 'x = x ** 2'],
+  ['+=', '求和再将和赋值给左侧变量', 'x += 2', 'x = x + 2'],
+  ['-=', '求差再将差赋值给左侧变量', 'x -= 2', 'x = x - 2'],
+  ['*=', '求积再将积赋值给左侧变量', 'x *= 2', 'x = x * 2'],
+  ['/=', '求商再将商赋值给左侧变量', 'x /= 2', 'x = x / 2'],
+  ['%=', '求余数再将余数赋值给左侧变量', 'x %= 2', 'x = x % 2'],
+  ['**=', '求幂再将幂赋值给左侧变量', 'x **= 2', 'x = x ** 2'],
 ];
 
 const dataSource2 = calculators.map(transform);
@@ -88,6 +88,7 @@ export default function Operator() {
     <Markdown docString={docString4} />
     <Table rowKey="id" size="small" columns={columns4} dataSource={dataSource4} pagination={false} /><br />
     <Markdown docString={docString5} />
-    <Table rowKey="id" size="small" columns={columns5} dataSource={dataSource5} pagination={false} />
+    <Table rowKey="id" size="small" columns={columns5} dataSource={dataSource5} pagination={false} /><br />
+    <Markdown docString={docString6} />
   </div>)
 }
