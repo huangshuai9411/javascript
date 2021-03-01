@@ -16,6 +16,7 @@ export default function Functions() {
     <Code codeString={docs.codeString2} />
     <Markdown docString={docs.introduce4} />
     <LittleTest id="function1" />
-    <LittleTest id="function2" />
+    <LittleTest id="function2" /><p />
+    <Markdown docString={docs.introduce5} />
   </div>)
 }

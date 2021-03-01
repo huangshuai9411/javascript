@@ -23,7 +23,7 @@ export const cssString3 = `
 `;
 
 export const cssString4 = `
-我们再看网页，效果与之前是一样的。这时候我们回到 [HTML > 网页结构](/overview/html/example) 那节再看，是不是就看懂了标签上的各种 class ？
+我们再看网页，效果与之前是一样的。这时候我们回到 [HTML > 网页结构](/overview/html/example) 那节再看，是不是就看懂了标签上的各种 class ？一个标签上可以应用多个类，中间用空格隔开。
 
 - class 的命名比较随意，包含数字（不可以作为首字符）、字母、下划线、中划线都是可以的，比如合法的类名可以是以下形式：
 

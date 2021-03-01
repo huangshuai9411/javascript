@@ -37,7 +37,7 @@ const breakLoop =  `
 const docString5 = `
 ### **continue**
 
-跳过本次循环，继续下一轮循环。比如我们统计时，某些情况不需要统计，但是不需要结束循环，就可以使用 continue。无需多言，直接小测试。
+跳过本次循环，继续下一轮循环。比如我们统计时，某些情况不需要统计，但是不能终止循环，就可以使用 continue。无需多言，直接小测试。
 `;
 
 export const loop = {

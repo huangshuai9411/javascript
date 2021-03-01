@@ -37,7 +37,7 @@ export const docString2 = `
 
 > ${reference('typeof function (){} --------> "function"')}
 
-> 我们注意到 数组[]，对象{}，null 都返回 "object"，要区分这三种类型，可以结合值的真假，数组特有的 ${reference('Array.isArray')} 方法来判断，在早期也可以用 ${reference('Object.prototype.toString.call(value)')} 来识别 value 的数据类型，E6 以来已经不用这么麻烦了。
+> 我们注意到 数组[]，对象{}，null 都返回 "object"，要区分这三种类型，可以结合值的真假，数组特有的 ${reference('Array.isArray')} 方法来判断，在早期也可以用 ${reference('Object.prototype.toString.call(value)')} 来识别 value 的数据类型，ES6 以来已经不用这么麻烦了。
 
 ### **JSON (JavaScript Object Notation) **
 
@@ -101,7 +101,7 @@ ${reference('123, 0.25, true, false, "字符串", null, [], [1, "ff", 0, false, 
 
 > ${reference('let array = ["Tom", "Lily", 123];')}
 
-数组是一个有序的列表，所以访问元素通过“序号”即可，这个“序号”成为**索引**。按照约定，索引从 0 开始。比如访问第一个元素：
+数组是一个有序的列表，所以访问元素通过“序号”即可，这个“序号”即为**索引**。按照约定，索引从 0 开始。比如访问第一个元素：
 
 > ${reference('array[0]')}
 

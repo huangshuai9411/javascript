@@ -1,3 +1,5 @@
+import practice from './practice';
+
 export default {
   if: {
     question: '使用 if 语句实现：你的代码考核成绩用变量 x 表示，当成绩达到 90 分时，就会得到一个不错的 offer，控制台输出“我被录用了”，如果成绩在 80~90 分之间（不包含）时，输出“我很优秀，再接再厉！”，两者都不满足时输出“很遗憾，我还需要更多的努力”。',
@@ -110,7 +112,7 @@ console.log(number);
     code: `
 let sum = 0;
 for (let number = 1; number <= 1000; number++) {
-  if (number % 9 === 0) {
+  if (number % 9 === 0) { // 这个条件一旦成立，就不会执行 if 之后的循环体了。
     continue;
   }
   sum += number;
@@ -175,7 +177,7 @@ function sumUp(scores) {
   return sum;
 }
 
-// ②
+// ② 标准差公式自行百度
 function standardDeviationOfMath(scores) {
   let sumOfMath = 0, length = scores.length; // 学生总数存为 length 变量
   for (let i = 0; i < length; i++) {
@@ -183,7 +185,7 @@ function standardDeviationOfMath(scores) {
     sumOfMath += mathScore;
   }
   let average = sumOfMath / length; // 平均值
-  let sumOfSquares = 0;
+  let sumOfSquares = 0; // 平方和初始值
   for (let i = 0; i < length; i++) {
     sumOfSquares += (average - getValidScore(scores[i].math)) ** 2;
   }
@@ -197,5 +199,6 @@ let standardDeviation = standardDeviationOfMath(scores);
 
 console.log('总分数：'，sum, ', 标准差：', standardDeviation);
 `
-  }
+  },
+  ...practice
 }

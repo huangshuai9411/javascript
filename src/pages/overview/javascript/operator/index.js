@@ -12,12 +12,12 @@ const getColumns = (title, index) => ({
 const transform = (row, id) => row.reduce((prev, cur, index) => ({ ...prev, [`key${index}`]: cur }), { id });
 const operators = [
   ['+', '加法运算', '1 + 2', '3'],
-  ['-', '减法运算', '3 - 2', '0'],
+  ['-', '减法运算', '3 - 2', '1'],
   ['*', '乘法运算', '3 * 2', '6'],
   ['/', '除法运算', '3 / 2', '1.5'],
   ['++', '自增运算', 'let i = 0; i++;console.log(i);', '1'],
   ['--', '自减运算', 'let j = 0; j--;console.log(j);', '-1'],
-  ['%', '取余运算', '8 / 5', '3'],
+  ['%', '取余运算', '8 % 5', '3'],
   ['**', '幂运算', '2 ** 5', '32'],
 ];
 const columns1 = ['操作符', '描述', '控制台输入并回车', '输出'].map(getColumns);
@@ -28,7 +28,7 @@ const columns2 = ['操作符', '描述', '示例', '等价于'].map((title, inde
   dataIndex: `key${index}`
 }));
 const calculators = [
-  ['=', '赋值', 'let x;  x = 5;'],
+  ['=', '赋值', 'let x;  x = 5; 先声明后赋值', 'let x = 5;声明同时赋值'],
   ['+=', '求和再将和赋值给左侧变量', 'x += 2', 'x = x + 2'],
   ['-=', '求差再将差赋值给左侧变量', 'x -= 2', 'x = x - 2'],
   ['*=', '求积再将积赋值给左侧变量', 'x *= 2', 'x = x * 2'],
@@ -56,8 +56,8 @@ const dataSource3 = compares.map(transform);
 const columns4 = ['运算符', '描述', '示例', '运算结果'].map(getColumns);
 
 const logical = [
-  ['&&', '并且，遇到假值即返回', 'true && false', 'false'],
-  ['||', '或， 遇到真值即返回', 'true || false', 'true'],
+  ['&&', '并且，遇到假值即返回假值', 'true && false', 'false'],
+  ['||', '或， 遇到真值即返回真值', 'true || false', 'true'],
   ['！', '非，真假取反', '!false', 'true'],
 ];
 const dataSource4 = logical.map(transform);
