@@ -112,16 +112,8 @@ const routes = [{
     icon: <FunctionOutlined />,
   }, {
     key: '/lesson/scope',
-    title: '作用域',
+    title: '作用域和闭包',
     icon: <ControlOutlined />,
-  }, {
-    key: '/lesson/prototype',
-    title: '原型链',
-    icon: <NodeIndexOutlined />,
-  }, {
-    key: '/lesson/async',
-    title: '异步',
-    icon: <HistoryOutlined />,
   }, {
     key: '/lesson/bom',
     title: 'BOM',
@@ -130,6 +122,14 @@ const routes = [{
     key: '/lesson/dom',
     title: 'DOM',
     icon: <FolderOutlined />,
+  }, {
+    key: '/lesson/prototype',
+    title: '原型链',
+    icon: <NodeIndexOutlined />,
+  }, {
+    key: '/lesson/async',
+    title: '异步',
+    icon: <HistoryOutlined />,
   }]
 }, {
   key: '/es6',

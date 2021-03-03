@@ -289,5 +289,38 @@ function howManyDays(birthYear, birthMonth, birthday) {
   return diff + leapCount * 366 + ordinaryCount * 365 + thisYearDays;
 }
 `
+  },
+  practice10: {
+    question: '回文串判断：如果一个字符串（长度大于 1）左右对称，如 "abcba"、"123321"，则称为回文字符串。实现一个函数判断输入的字符串是否为回文字符串。',
+    code: `
+function plalindrome(str) {
+  let length = str.length;
+  if (length < 2) {
+    return false;
+  }
+  if (length % 2 === 0) { // 长度为偶数时
+  // 字符串没有 reverse 方法，将前半截转为数组，颠倒顺序，拼接起来再与后半截对比
+    return str.substring(0, length / 2).split('').reverse().join('') === str.substring(length / 2);
+  }
+  // 程序到这里，处理的是长度奇数的情况
+  length--; // 先转为偶数，最后
+  return str.substring(0, length / 2).split('').reverse().join('') === str.substring(length / 2 + 1); 
+  // 最后这里要跳过中心字符，所以加 1
+}
+
+// 上述代码的返回结果中，只有末尾稍有差异，相同逻辑合并如下：
+function plalindrome(str) {
+  let length = str.length;
+  if (length < 2) {
+    return false;
+  }
+  let secondStringStartIndex = length / 2;
+  if (length % 2 !== 0) {
+    length--;
+    secondStringStartIndex = length / 2 + 1;
+  }
+  return str.substring(0, length / 2).split('').reverse().join('') === str.substring(secondStringStartIndex);
+}
+`
   }
 }

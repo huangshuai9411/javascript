@@ -1,4 +1,6 @@
-export const reference = string => `\`\`\`${string}\`\`\``;
+export const reference = string => `\`\`\`
+${string}
+\`\`\``;
 
 export const template = (slot = '', replace) => replace ? slot :`
 <!DOCTYPE html>
