@@ -20,7 +20,7 @@ const codeString2 = template(`
   <img src="./cat.jpg" width="50%" height="auto" />`);
 
 
-const codeString3 = template(`<!DOCTYPE html>
+export const codeString3 = template(`<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
