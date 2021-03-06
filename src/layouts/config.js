@@ -19,6 +19,8 @@ import {
   HistoryOutlined,
   ChromeOutlined,
   FolderOutlined,
+  ReconciliationOutlined,
+  QuestionOutlined,
   RiseOutlined,
   FireOutlined,
   FrownOutlined,
@@ -123,12 +125,20 @@ const routes = [{
     title: 'DOM',
     icon: <FolderOutlined />,
   }, {
+    key: '/lesson/event',
+    title: '事件',
+    icon: <ReconciliationOutlined />,
+  }, {
+    key: '/lesson/this',
+    title: 'this',
+    icon: <QuestionOutlined />,
+  }, {
     key: '/lesson/prototype',
     title: '原型链',
     icon: <NodeIndexOutlined />,
   }, {
     key: '/lesson/async',
-    title: '异步',
+    title: 'ajax 和异步',
     icon: <HistoryOutlined />,
   }]
 }, {

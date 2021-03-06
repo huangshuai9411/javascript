@@ -66,6 +66,18 @@ export const docString5 = `
 `;
 
 export const docString6 = `
+### **三目运算符**
+
+又称条件运算符、三元运算符。基本语法为：
+
+> ${reference('condition ? value1 : value2')}，当 condition 值为 truthy 时，表达式运算结果为 value1，否则返回 value2。
+
+> 例如：${reference('let value = true ? 5 : 3;')} 变量 value 的值为 5；
+
+> 再如：${reference('let value = null ? 5 : 3;')} 变量 value 的值为 3；
+
+三目运算符的内容就这么简单，你学会了吗？
+
 > 至此，相对枯燥的基础部分介绍告一段落，未来的课程，均使用前面介绍的概念符号来组织逻辑。如果把一个项目成品比作一篇优秀的文章的话，那么前面的章节好比**文字或词组**，而后面的章节属于**语法层面**的学习。基础符号和文字 + 语法 = 完整的语句。
 
 > 你，是否有些跃跃欲试了呢？[开启新篇章](/lesson/condition)

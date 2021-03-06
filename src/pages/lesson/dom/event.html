@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>醉翁亭记</title>
+	</head>
+	<body>
+    <button>这是按钮1</button>
+    <button>这是按钮2</button>
+    <button>这是按钮3</button>
+    <button>这是按钮4</button>
+    <script type="text/javascript">
+      window.onload = function () {
+        let buttons = document.querySelectorAll('button');
+        for (let i = 0; i < buttons.length; i++) {
+          buttons[i].addEventListener('click', function onClick(e) {
+            console.log('onClick 中 this 和事件源相等吗？', this === e.target);
+            console.log('onClick 中 this === 当前按钮吗', this === buttons[i]);
+            this.style.backgroundColor = 'grey'; // 背景色置灰
+            this.style.color = '#00ff00'; // 文字变色
+            this.style.width = '200px'; // 设置宽
+            this.style.height = '50px'; // 设置高
+            setTimeout(function anonymous() {
+              e.target.innerHTML += ', 2s 后按钮追加的文本';
+              console.log('anonymous 中 this 和 事件源相等吗？', this === e.target);
+              console.log('anonymous 中 this === 当前按钮吗', this === buttons[i]);
+            }, 2000)
+          }, false);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -29,7 +29,7 @@ const modifyStyle1 = `
 `;
 const modifyStyle2 = `
 <script type="text/javascript">
-  // window.onload 会在页面结构加载完成时自动调用，这时候能保证代码获取 DOM 节点真实有效。
+  // window.onload 会在页面结构加载完成时自动执行（本质上也是一个函数），这时候能保证代码获取 DOM 节点真实有效。
   window.onload = function() {
     let p = document.getElementsByTagName('p'); // 注意这是一个类数组集合，所以需要循环挨个修改样式。
     for (let i = 0; i < p.length; i++) {
@@ -44,7 +44,7 @@ const modifyStyle2 = `
 
 const modifyStyle3 = `
 <script type="text/javascript">
-  // window.onload 会在页面结构加载完成时自动调用，这时候能保证代码获取 DOM 节点真实有效。
+  // window.onload 会在页面结构加载完成时自动执行（本质上也是一个函数），这时候能保证代码获取 DOM 节点真实有效。
   window.onload = function() {
     let p = document.getElementsByTagName('p'); // 注意这是一个类数组集合，所以需要循环挨个修改样式。
     for (let i = 0; i < p.length; i++) {
@@ -56,7 +56,7 @@ const modifyStyle3 = `
     let newDiv = document.createElement('div');
     newDiv.style.color = 'red';
     newDiv.style.opacity = '0.8';
-    newDiv.innerHTML = '我是新加的 div 元素，设置或替换节点内容可以使用设置节点的 innerHTML 值';
+    newDiv.innerHTML = '我是新加的 div 元素，设置或替换节点内容时，可以设置节点的 innerHTML 值';
     document.body.appendChild(newDiv);
   }
 </script>
