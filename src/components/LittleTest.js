@@ -6,13 +6,13 @@ import { useToggle } from '@/hooks';
 import styles from './style/LittleTest.less';
 import examination from './examination';
 
-export default function LittleTest({ id }) {
+export default function LittleTest({ id, type = 'button' }) {
   const { state, toggle } = useToggle();
   const { state: visible, toggle: onVisible } = useToggle();
   const { title, question, code, data } = examination[id] || { question: 'id 不存在，题库还没有这道题' };
 
   return (<>
-    <Button danger onClick={toggle} className={styles.danger}>{ title || '请先暂停，立即做个小练习' }</Button>
+    <Button danger onClick={toggle} className={styles.danger} type={type}>{ title || '请先暂停，立即做个小练习' }</Button>
     <Modal
       title="小练习"
       visible={state}

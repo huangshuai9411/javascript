@@ -1,4 +1,5 @@
 import practice from './practice';
+import event from './event';
 
 export default {
   if: {
@@ -200,5 +201,6 @@ let standardDeviation = standardDeviationOfMath(scores);
 console.log('总分数：'，sum, ', 标准差：', standardDeviation);
 `
   },
-  ...practice
+  ...practice,
+  ...event
 }

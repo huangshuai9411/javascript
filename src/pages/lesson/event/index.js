@@ -3,8 +3,9 @@ import { Table } from 'antd';
 import { template } from '@/util';
 import Markdown from '@/components/Markdown';
 import Code from '@/components/Code';
+import LittleTest from '@/components/LittleTest';
+import Homework from './Homework';
 import docs from './doc';
-import BusinessCard from './homework/BusinessCard';
 
 const list = [
   ['auxclick', '鼠标按下非主按钮时触发的事件，是DOM Events规范的一部分，但不是任何官方规范的一部分，了解即可，几乎不会用到', 0],
@@ -146,7 +147,8 @@ export default function Event() {
   return (
     <div>
       <Markdown docString={docs.docString1} />
-      <Table rowKey="id" size="small" columns={columns} dataSource={dataSource} pagination={false} /><p />
+      <Table rowKey="id" size="small" columns={columns} dataSource={dataSource} pagination={false} />
+      <p />
       <Markdown docString={docs.docString2} />
       <Code codeString={modifyStyle1} />
       <Markdown docString={docs.docString3} />
@@ -162,7 +164,8 @@ export default function Event() {
       <Markdown docString={docs.docString8} />
       <Code codeString={modifyStyle7} />
       <Markdown docString={docs.docString9} />
-      <BusinessCard />
+      <Homework />
+      <LittleTest id="event-homework" type="link" />
     </div>
   );
 }

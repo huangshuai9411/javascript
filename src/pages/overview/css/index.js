@@ -3,6 +3,7 @@ import Markdown from '@/components/Markdown';
 import Code from '@/components/Code';
 import { cssString1, cssString2, cssString3, cssString4, cssString5 } from './doc';
 import { template } from '@/util';
+import BusinessCard from './homework/BusinessCard';
 import styles from './style.less';
 
 const codeString1 = template(`
@@ -74,7 +75,8 @@ const codeString4 = template(`<!DOCTYPE html>
 </html>`, true);
 
 export default function Css() {
-  
+  const style = { fontSize: '20px', padding: '10px 0', fontWeight: 'bold' };
+
   return (<div className={styles.Css}>
     <Markdown docString={cssString1} />
     <Code codeString={codeString1} />
@@ -85,5 +87,9 @@ export default function Css() {
     <Markdown docString={cssString4} />
     <Code codeString={codeString4} />
     <Markdown docString={cssString5} />
+    <p style={style}>正面</p>
+    <BusinessCard.TheObverseSide />
+    <p style={style}>反面</p>
+    <BusinessCard.TheOtherSide />
   </div>)
 }
