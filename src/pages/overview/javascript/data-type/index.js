@@ -18,7 +18,7 @@ const columns = ['类型名称', '构造函数或原生对象', '实例', 'typeo
   title,
   dataIndex: `key${index}`
 }));
-const dataSource = dataType.map((row, id) => row.reduce((prev, cur, index) => ({ ...prev, [`key${index}`]: cur }), { id }));
+export const dataSource = dataType.map((row, id) => row.reduce((prev, cur, index) => ({ ...prev, [`key${index}`]: cur }), { id }));
 
 export default function DataType() {
   
