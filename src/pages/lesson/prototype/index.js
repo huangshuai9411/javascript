@@ -19,5 +19,16 @@ export default function Prototype() {
     <p />
     <Markdown docString={docs.doc2} />
     <Code codeString={docs.code1} />
+    <Markdown docString={docs.doc3} />
+    <Code codeString={docs.code2} />
+    <Markdown docString={docs.doc4} />
+    <Code codeString={docs.code3} />
+    <Markdown docString={docs.doc5} />
+    <Code codeString={docs.code4} />
+    <Markdown docString={docs.doc6} />
+    <Code codeString={docs.code5} />
+    <Markdown docString={docs.doc7} />
+    <Code codeString={docs.code6} />
+    <Markdown docString={docs.doc8} />
   </div>)
 }
