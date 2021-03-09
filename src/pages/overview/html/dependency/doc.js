@@ -42,6 +42,7 @@ const labels = [
   ['dd', '自定义列表单项，只在dl标签内使用'],
   ['audio', '音频标签，如果不做专门的业务，几乎用不到'],
   ['video', '视频标签，如果不做专门的业务，几乎用不到'],
+  ['表单元素', '提交数据必不可少的元素，如输入框 input，单选框 radio，下拉选择框 select，文本域 textarea，这些将在 **课程 > ajax 和异步** 一节进行详细讲解。']
 ].map(([label, desc]) => reference(label) + ': ' + desc).join(`
 
 `); // 这里插入了一个换行符

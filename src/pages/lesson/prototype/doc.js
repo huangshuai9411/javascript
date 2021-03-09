@@ -4,7 +4,7 @@ import prototypes from './prototype.png';
 
 export default {
   doc1: `
-### **引子**
+#### **引子**
 
 回顾数据类型一节，JS 中的数据类型有字符串（String）、数字（Number）、对象（Object）、布尔（Boolean）、null、undefined、符号（Symbol，比较特殊，不能使用 new 调用）、BigInt（比较特殊，不能使用 new 调用），对象可细分为数组（Array）、函数（Function）、object（Object）。除去 null、undefined，其他数据都有相应的构造函数，按照约定，构造函数均以大写首字母的事实规范来定义。利用构造函数初始化得到的结果，我们称之为实例。例如：
 `,
@@ -65,7 +65,7 @@ export default {
 
 看着熟悉的控制台，只剩下孤零零的一个——${reference('null')} 。看来宇宙万物，真的源于虚空……
 
-### **原型链的内容，还没开始讲，就已经结束了**
+#### **原型链的内容，还没开始讲，就已经结束了**
 
 总结一下：
 
@@ -73,7 +73,7 @@ export default {
 - 所有的构造函数都是 ${reference('Function')} 的实例，${reference('Function.prototype')} 是 ${reference('Object')} 的实例。
 - 回归主题，实例可以访问原型链上的方法，这也是原型链继承的本质。访问实例上存在的方法时不会到原型链上查找，除非实例上不存在某个方法，才会顺着原型链向上查找。
 
-### **原型链继承**
+#### **原型链继承**
 我们借助一个例子梳理一下这条链路：
 定义父类为 ${reference('function Person() {}')}，实例为 ${reference('let p = new Person();')}。则有：
 
@@ -167,7 +167,7 @@ superman.say();
 superman.fly();
 `,
   doc6: `
-细心的同学已经发现问题了，这句代码 ${reference('Superman.prototype =  new Person()')} 调用 Person 并没有传参，所以 superman 原型链上虽然有 name，age 属性，但是都为 undefined，且这些属性不再实例上，这意味着会被共享。即：
+细心的同学已经发现问题了，这句代码 ${reference('Superman.prototype =  new Person()')} 调用 Person 并没有传参，所以 superman 原型链上虽然有 name，age 属性，但是都为 undefined，且这些属性不在实例上，这意味着会被共享。即：
 
 > ${reference("superman.name === undefined; 'name' in superman === true")}
 

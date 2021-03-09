@@ -66,7 +66,7 @@ export const docString5 = `
 `;
 
 export const docString6 = `
-### **三目运算符**
+#### **三目运算符**
 
 又称条件运算符、三元运算符。基本语法为：
 

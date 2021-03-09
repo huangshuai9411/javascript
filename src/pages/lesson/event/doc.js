@@ -62,7 +62,7 @@ const docString7 = `
 const docString8 = `
 > 事件绑定就是这样。只要把“onclick”换成其他事件类型，比如 “onmouseover”，“ondrag”，“onmousewheel”，就可以实现其他事件类型了。是不是很简单？那好，我们现在再讲一种绑定事件的方式。
 
-### **addEventListener**
+#### **addEventListener**
 
 前面讲述的绑定事件方式，都要开发者在元素标签上定义事件类型和处理函数，这种“写死”的方式显然不利于代码的扩展性、动态性以及维护性（通常标签与脚本是分开组织的，混在一起会很难维护）。我们用前面的代码作为示例：
 `;
