@@ -28,11 +28,11 @@ export default {
 </form>
 `,
   doc3: `
-  由于表单的原生提交方法过于简陋，交互体验很差，目前已经没有哪个优秀的平台还在使用了。这里简单提一提有个大概了解：已上面的标签为例，form 定义了一个表单域，包裹着所有的表单元素，每个表单元素上均有 id 属性，（IE 也支持 name 属性），当类型（type）为 submit 的按钮或 input 元素被点击的时候，页面填写的数据就会被提交到服务器。所以 form 标签需要定义提交的地址以及提交方式。例如：
+  由于表单的原生提交方法过于简陋，交互体验很差，目前已经没有哪个优秀的平台还在使用了。这里简单提一提有个大概了解：以上面的标签为例，form 定义了一个表单域，包裹着所有的表单元素，每个表单元素上均有 id 属性，（IE 也支持 name 属性），当类型（type）为 submit 的按钮或 input 元素被点击的时候，页面填写的数据就会被提交到服务器。所以 form 标签需要定义提交的地址以及提交方式。例如：
   
 ${reference('<form action="http://www.nice.com" method="post">...</form>')}
 
-意思是发起一个 post 请求，将数据提交到地址${reference('http://www.nice.com')}。请求方式还有 get、put、delete 等等。请求方式是人为区分的对数据操作的不同描述，没什么本质上的不同，所以很多开发者常常只用 get 获取数据、post 提交数据。不过为了规范性，建议对不同的请求方式进行区分，有越来越多的开发者开始重视这个问题了。另外，如果是上传文件，还要在 post 请求的 form 标签上定义 ${reference('enctype="multipart/form-data"')}属性。以上这种原生提交数据的方式，总会在提交完成后发生页面跳转，而且提交失败时开发者也无法优雅地捕捉处理。所以这块内容建议了解学习，毕竟一些现成的组件库已经有成熟的方案了。
+意思是发起一个 post 请求，将数据提交到地址${reference('http://www.nice.com')}。请求方式还有 get、put、delete 等等。请求方式是人为区分的对数据操作的不同描述，没什么本质上的不同，所以很多开发者常常只用 get 获取数据、post 提交数据。不过为了规范性，建议对不同的请求方式进行区分，有越来越多的开发者开始重视这个问题了。另外，如果是上传文件，还要在 post 请求的 form 标签上定义 ${reference('enctype="multipart/form-data"')}属性。以上这种原生提交数据的方式，总会在提交完成后发生页面跳转，而且提交失败时开发者也无法优雅地捕捉处理错误。所以这块内容建议了解学习，毕竟一些现成的组件库已经有成熟的方案了。
 
 ### **ajax（ Asynchronous JavaScript and XML）**
 上面提到的表单提交数据，其实就是用户通过浏览器与服务器进行的一次信息交换。如果我们可以不借助表单实现信息交换，那是不是就可以任意提交想提交的数据（而不必局限于页面的表单里有什么），也不用提交后刷新整个网页了？没错，**AJAX 最大的优点就是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容**。
@@ -46,7 +46,7 @@ window.onload = function () {
     let username = document.getElementById('username');
     let password = document.querySelector('input[type=password]');
     let remember = document.querySelector('#remember');
-    // 组装数据对象，还可以加入表单之外的需要的值。
+    // 组装数据对象，还可以加入表单之外的需要的值（如 type）。
     let data = {
       type: 'ajax',
       username: username,

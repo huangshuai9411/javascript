@@ -1,5 +1,6 @@
 import practice from './practice';
 import event from './event';
+import es6 from './es6';
 
 export default {
   if: {
@@ -202,5 +203,6 @@ console.log('总分数：'，sum, ', 标准差：', standardDeviation);
 `
   },
   ...practice,
-  ...event
+  ...event,
+  ...es6
 }
