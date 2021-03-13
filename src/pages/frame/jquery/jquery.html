@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>醉翁亭记</title>
+  </head>
+  <body>
+    <button>这是按钮1</button>
+    <button>这是按钮2</button>
+    <button>这是按钮3</button>
+    <button>这是按钮4</button>
+    <!-- <script src="https://lib.baomitu.com/jquery/3.6.0/jquery.js"></script> -->
+    <script type="text/javascript">
+      function $(selector) {
+        if (typeof selector === 'string' || selector instanceof HTMLElement) { // 这里省略了字符串选择器合法性的校验
+          if (selector instanceof HTMLElement) {
+            return $.wraper(selector);
+          }
+          // 得到所有匹配的元素集合，可能匹配为空
+          const selectors = document.querySelectorAll(selector);
+
+          return $.wraper(selectors);
+        }
+        // 其他格式的参数比如函数不走选择器的逻辑。
+      }
+      
+      $.addEvent = wraperSelectors => {
+        // 添加点击事件
+        wraperSelectors.click = function (clickEvent) {
+          if (wraperSelectors.length) {
+            wraperSelectors.forEach(node => {
+              node.addEventListener('click', clickEvent, false);
+              // 事实上，不同浏览器的绑定事件有差异，jquery 源码是有做兼容性处理的，这里学习原理，暂不处理兼容性
+            });
+          }
+              
+          return wraperSelectors; // 保证链式调用，每个方法执行完后均再次返回包装对象。
+        };
+        // 添加修改样式的 css 方法
+        wraperSelectors.css = function (arg0, arg1) { // 参数可能是两个字符串，也可能是一个对象
+          if (wraperSelectors.length) {
+            if (typeof arg0 === 'string' && typeof arg1 === 'string') {
+              wraperSelectors.forEach(node => {
+                node.style[arg0] = arg1;
+              });
+            }
+            if (typeof arg0 === 'object') { // 第一个参数是对象且不是 null
+              Object.entries(arg0).forEach(cssKeyValue => {
+                // cssKeyValue 的结构是 [key, value] 的格式，例如 ['color', '#fff']，因此可以多次调用第一种形式的设置方法
+                wraperSelectors.css(...cssKeyValue);
+              });
+            }
+          }
+          return wraperSelectors; // 保证链式调用，每个方法执行完后均再次返回包装对象。
+        };
+        return wraperSelectors;
+      }
+      
+      $.wraper = res => {
+        let nodeList = []; // 没找到元素时，返回空数组，方便使用数组的方法处理
+        if (res instanceof HTMLElement) {
+          nodeList = [res];
+        } else if (res) { // 否则视为匹配了一个列表
+          nodeList = [...res];
+        }
+        return $.addEvent(nodeList); // 将添加了事件和方法的列表返回
+      }
+
+      $('button').click(function (e) { // 直接使用相应的事件方法
+        $(e.target).css({ // 直接使用对象参数一次设定
+          backgroundColor: 'grey',
+          color: '#00ff00',
+          width: '200px',
+          height: '50px',
+        });
+      });
+    </script>
+  </body>
+</html>
