@@ -131,4 +131,56 @@ Array.prototype.reduce = function (callback, start) {
 // reduceRight 类似，不过是索引由大到小遍历，请自己实现一下。
 `
   },
+  promise: {
+    title: 'promise 浅析',
+    hide: true,
+    question: 'Promise 是一个构造函数，实例化时接收一个函数(设为 f )为参数。则 f 的两个参数分别是执行成功的状态回调 resolve 和失败的回调 reject。resolve 被调用时的参数可以在实例的 then 方法中获取到，可以处理请求的返回值，reject 被调用时的参数可以在实例的 catch 方法中捕获，一般处理异常和错误。我们将 ajax 请求封装成 promise，点开 “测试数据在这里”进行学习：',
+    data: `
+function ajax(url, options) {
+  return new Promise((resolve, reject) => {
+    options = options || {}; // 可以没有 options，默认使用空对象 
+    let method = options.method || 'GET'; // 没有 options 时，默认使用 get 请求
+    let async = 'async' in options ? options.async : true; // 有 options 时就用 options.async，否则就使用异步
+    let data = options.data ? JSON.stringify(options.data) : null; // 将 data 参数补上，这是提交的数据
+    let xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function onReady() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        try {
+          const response = JSON.parse(xhr.responseText);
+          resolve(response); // 不需要传递 callback 回调，因为返回值会在 then 方法拿到
+        } catch(error) {
+          reject(error); // 如果解析失败，错误往后传递
+        }
+      }
+    };
+    xhr.onerror = reject; // 错误由 reject 传递给 catch 来处理
+    xhr.open(method, url, async);
+    xhr.send(data);
+  });
+}
+
+// 使用方式：
+ajax('/api', { method: 'POST', data: {} }).then(data => {
+  // data 就是上面 resolve 的返回值
+}).catch(err => {
+  // err 要么是 try-catch 抛出的 error 参数，要么是 xhr.onerror 方法的参数，可以分别进行处理
+});
+
+
+// 如果一个函数返回值是 promise 类型，如上述 ajax 方法，则可以通过异步函数来获取到 resolve 的参数：
+async function () {
+  const data = await ajax('/api', { method: 'POST', data: {} });
+  // data 就是返回值，简单理解就是异步函数能将 promise 包装值解析出来，让我们写代码就像同步的方式
+}
+
+
+// 或者使用 ES6 的 generator 函数（函数名和 function 关键字之间加 * 号），这里不作为重点，先行了解。
+function *generator() {
+  const data = yield ajax('/api', { method: 'POST', data: {} });
+  // data 就是返回值，简单理解就是生成器函数能将 promise 包装值解析出来，让我们写代码就像同步的方式
+}
+
+`
+  }
 }

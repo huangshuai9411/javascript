@@ -22,7 +22,7 @@ const columns = [{
   title: '原理解析',
   dataIndex: 'key3',
   render: value => typeof value === 'string' ? <LittleTest id={value} /> : value,
-  maxWidth: 400
+  width: 400
 }];
 
 const data = [
@@ -178,7 +178,7 @@ for (let i = 0; i < arr.length; i++) {
   arr[i];
 }
 `, 
-`不再记录索引，只关注每一项的值：
+`数组对象：不再记录索引，只关注每一项的值：
 for (const item of arr) {
   item;
 }
@@ -193,10 +193,13 @@ for (let key in obj) {
 }
 `, 
 `不再记录索引，只关注每一项的值：
-for (const item of arr) {
+for (const item of arr) { // 数组
   item;
 }
-对象转数组再遍历
+for (const item of 'stringsqwwoger') { // 字符串
+  item;
+}
+对象转数组再用数组的方法遍历
 Object.keys(obj)： ['a', 'b', 'c']，键名的顺序与浏览器实现机制有关，
 虽然规范已有，但各大浏览器厂商目前是与否一致有待验证
 Object.values(obj)： [1, 2, 3]
@@ -305,24 +308,176 @@ arr[1] !== undefined, 所以变量 b 不启用默认值, b === arr[1]<br />
 </>
 ],
 [
-  '对象/数组合并 spread 运算符',
+'余项，可用于不定参数解构等',
+'-',
+`const arr = [1, 2, 3, 4];
+const [, ...rest] = arr; // 跳过第一项， rest = [2, 3, 4];
+
+const obj = { a: 1, b: 2, c: 3 };
+const { b, ...params } = obj; //b 为 2; params 为 { a: 1, c: 3 };
+
+function foo({e, ...rest}) {
+  // e 为 1，rest 为 { f: 2, g: 3 }
+}
+foo({ e: 1, f: 2, g: 3 })
+`,
+<>顾名思义, 余项即收集余下的所有元素, 包含在余项变量中, 
+是 spread 运算符的反向操作。但是声明余项操作时, 余项变量必须放在末尾! 
+</>
+],
+[
+  '对象/数组/字符串合并： spread 运算符，合并多个对象、数组到同类型数据中',
 `
 const arr = arr1.concat(arr2).concat(arr3).concat(arr4, arr5);
 
-const obj1 = { a: 1 }, obj2 = { b: 2 };
+const obj1 = { a: 1 }, obj2 = { b: 2 }, obj = {};
+for (const key in obj1) {
+  if (obj1.hasOwnProperty(key)) {
+    obj[key] = obj1[key];
+  }
+}
+
 for (const key in obj2) {
   if (obj2.hasOwnProperty(key)) {
-    obj1[key] = obj2[key];
+    obj[key] = obj2[key];
+  }
+}
+
+字符串转数组：'hello'.split('')  => ['h', 'e', 'l', 'l', 'o']
+`,
+`多数组合并到新数组中
+const arr = [...arr1, ...arr2, ...arr3, ...arr4, ...arr5];
+
+const obj1 = { a: 1 }, obj2 = { b: 2 };
+const obj = Object.assign({}, obj1, obj2);
+或者 const obj = { ...obj1, ...obj2 };
+
+[...'hello']  => ['h', 'e', 'l', 'l', 'o']
+{...'hello'}  => {0: "h", 1: "e", 2: "l", 3: "l", 4: "o"}
+`,
+<>ES6 的数组, Set, Map, 字符串均默认部署了 Symbol.iterator 接口, 部署了 <a href="https://www.runoob.com/w3cnote/es6-iterator.html" target="_blank">Symbol.iterator </a>(先行了解, 不作为重点)<br />
+接口的对象均能使用 for-of 循环来遍历, 均能通过 spread 操作符进行扩展
+</>
+],
+[
+  'class，JavaScript 中的类。并不是真正意义上的类，而是一个语法糖：即以类的形式呈现和使用，却不是真的类的本质、运行机制。方便开发者以面向对象的习惯书写代码，提高代码可读性、聚合性。',
+`
+function inheritPrototype (child, parent) {
+　　let prototype = Object(parent.prototype);
+　　prototype.constructor = child;
+　　child.prototype = prototype;
+}
+function Person (name, age) {
+　　this.name = name;
+　　this.age = age;
+}
+Person.create = function (){} // 类的静态方法
+Person.prototype.say = function () {
+  console.log(this.name);
+}
+function Superman (name, age, skill) {
+  Person.call(this, name, age);
+　this.skill = skill;
+}
+inheritPrototype(Superman, Person);
+Superman.prototype.fly = function () {
+  console.log(this.skill);
+}
+`,
+`
+class Person {
+  constructor(name, age) {
+    this.name = name;
+　　this.age = age;
+  }
+  static create() {} // 类的静态方法
+  say() {
+    console.log(this.name);
+  }
+}
+
+class Superman extends Person {
+  constructor(name, age, skill) {
+    super(name, age);
+　　this.skill = skill;
+  }
+  fly() {
+    console.log(this.skill);
   }
 }
 
 `,
+<>
+在 <a href="/overview/javascript/reserved" target="_blank">综述 > JavaScript > 保留字</a> 一节中, 这里一并出现了好几个保留字, class, constructor, static, extends, super<br />
+只要是 ES6 使用到 class 继承的地方, 这几个一般都会出现。对比左侧的旧写法, 我们不难发现 constructor 是构造函数初始化属性的作用;static 是定义构造函数上的静态方法的; 原型上的方法直接列在类语句块内即可; extends 则是继承; 继承时一定会在构造函数内使用 super, super 对应 Person.call(this, name, age), 是为了以一定的参数顺序初始化父类, 之后才可使用 this; 这里的作用等同于父类构造函数的调用
+</>
+],
+[
+  'Promise，新增的全局对象和异步函数 async-await，异步回调的救星',
+`在学习 ajax 和异步 的时候，我们封装了包含回调
+函数的 ajax 请求方法，试想一下我们在一次成功的
+请求后需要再次请求，会是下面这样：
+function ajax(url, options) {
+  // 省略，参照 ajax 和异步 一节的作业
+}
+ajax('/api1', {
+  onSuccess(res1) {
+    // 以返回值 res1 为参数再发起别的请求
+    ajax('/api2', {
+      methods: 'POST',
+      data: res,
+      onSuccess(res2) {
+        // 以返回值 res2 为参数再发起别的请求
+        ajax('/api3')
+      },
+      onFail(err){
+        // 对 /api2 请求失败的处理
+      }
+    });
+  },
+  onFail(err){
+    // 对 /api1 请求失败的处理
+  }
+});
+`,
 `
-const arr = [...arr1, ...arr2, ...arr3, ...arr4, ...arr5];
+使用 Promise 实现的 ajax 方法：
+ajax('/api1')
+.then(res => ajax('/api2', {
+  methods: 'POST',
+  data: res,
+}))
+.then(() => ajax('/api3'));
 
-const obj1 = { a: 1 }, obj2 = { b: 2 };
-Object.assign(obj1, obj2);
+异步函数版：
+async function callName() {
+  const res1 = await ajax('/api1');
+  const res2 = await ajax('/api2', { methods: 'POST', data: res1 });
+  const res3 = await ajax('/api3', { methods: 'POST', data: res2 });
+}
+
+callName();
+`,
+'promise'
+],
+['模板字符串',
 `
+拼接字符串与变量:
+const str1 = 'hello ', str2 = 'are you ok ?';
+
+const newStr = str1 + 'Tom, ' + str2;
+
+newStr === 'hello Tom, are you ok ?';
+`,
+`
+const str1 = 'hello ', str2 = 'are you ok ?';
+
+const newStr = \`\${str1}Tom, \${str2}\`;
+`,
+<>
+使用反引号" ` "(键盘左边第二行第一个按键)
+字符串中使用变量时，以<strong> $ + 花括号</strong> 包裹, 字符串的拼接更加直观简洁
+</>
 ]
 ];
 
@@ -335,5 +490,7 @@ export default function ES6() {
     <Code codeString={docs.code1} />
     <Markdown docString={docs.doc2} />
     <Table rowKey="id" size="small" columns={columns} dataSource={dataSource} pagination={false} />
+    <p />
+    <Markdown docString={docs.doc3} />
   </div>)
 }

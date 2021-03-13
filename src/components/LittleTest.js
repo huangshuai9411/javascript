@@ -9,7 +9,7 @@ import examination from './examination';
 export default function LittleTest({ id, type = 'button' }) {
   const { state, toggle } = useToggle();
   const { state: visible, toggle: onVisible } = useToggle();
-  const { title, question, code, data } = examination[id] || { question: 'id 不存在，题库还没有这道题' };
+  const { title, question, code, data, hide } = examination[id] || { question: 'id 不存在，题库还没有这道题' };
 
   return (<>
     <Button danger onClick={toggle} className={styles.danger} type={type}>{ title || '请先暂停，立即做个小练习' }</Button>
@@ -22,7 +22,7 @@ export default function LittleTest({ id, type = 'button' }) {
       width={760}
       wrapClassName={styles.wrapClassName}
     >
-      <strong><font color="#faad14"><WarningOutlined />&nbsp;</font>务必在自己的编辑器或控制台实现代码逻辑，运行之后再查看参考答案</strong>
+      {!hide && <strong><font color="#faad14"><WarningOutlined />&nbsp;</font>务必在自己的编辑器或控制台实现代码逻辑，运行之后再查看参考答案</strong>}
       <p className={styles.question} dangerouslySetInnerHTML={{ __html: question }} />
       {
         data && <> 
