@@ -478,6 +478,27 @@ const newStr = \`\${str1}Tom, \${str2}\`;
 使用反引号" ` "(键盘左边第二行第一个按键)
 字符串中使用变量时，以<strong> $ + 花括号</strong> 包裹, 字符串的拼接更加直观简洁
 </>
+],
+[
+  '对象属性的简写',
+`声明一个对象：
+const prop1 = '1', prop2 = 2;
+const obj = { prop1: prop1, prop2: prop2, prop3: 3 };
+这是 ES6 之前对象的标准形式：键值对均不可或缺
+`,
+`
+ES6 简化了对象的书写形式，当属性名与变量名相同时，可以省略写成：
+const prop1 = '1', prop2 = 2;
+const obj = { prop1, prop2, prop3: 3 };
+属性名简写与键值对混合存在也是可以的。
+`,
+<>
+obj 的值为 { `{
+  prop1: "1",
+  prop2: 2,
+  prop3: 3
+}` }
+</>
 ]
 ];
 

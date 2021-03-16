@@ -31,7 +31,7 @@ const code1 = template(`
       }
     </script>`);
 const doc2 = `
-可自从有了 ${r('JQuery')}，一切变得更简单了。一样的页面，代码会是这样（在使用前必须先引入jquery，这里使用的是官网地址，也可以下载到本地）：
+可自从有了 ${r('JQuery')}，一切变得更简单了。一样的页面，代码会是这样（在使用前必须先引入 jquery，这里使用的是官网地址，也可以下载到本地）：
 `;
 const code2 = template(`
     <button>这是按钮1</button>
@@ -40,7 +40,7 @@ const code2 = template(`
     <button>这是按钮4</button>
     <script src="https://lib.baomitu.com/jquery/3.6.0/jquery.js"></script>
     <--这里是HTML文档中的注释，与脚本里的注释有区别
-    如果下载jquery到本地，文件名为jquery.js且与html文件在同一目录，那么这样引入：
+    如果下载 jquery 到本地，文件名为 jquery.js 且与 html 文件在同一目录，那么这样引入：
     <script src="./jquery.js"></script>
     -->
     <script type="text/javascript">
@@ -121,15 +121,15 @@ $.addEvent = wraperSelectors => {
   // 添加修改样式的 css 方法
   wraperSelectors.css = function (arg0, arg1) { // 参数可能是两个字符串，也可能是一个对象
     if (wraperSelectors.length) {
-      if (typeof arg0 === 'string' && typeof arg1 === 'string') {
+      if (typeof arg0 === 'string' && typeof arg1 === 'string') { // ①
         wraperSelectors.forEach(node => {
           node.style[arg0] = arg1;
         });
       }
-      if (typeof arg0 === 'object') { // 第一个参数是对象且不是 null
+      if (arg0 && typeof arg0 === 'object') { // 第一个参数是对象且不是 null。②
         Object.entries(arg0).forEach(cssKeyValue => {
-          // cssKeyValue 的结构是 [key, value] 的格式，例如 ['color', '#fff']，因此可以多次调用第一种形式的设置方法
-          wraperSelectors.css(...cssKeyValue);
+          // cssKeyValue 的结构是 [key, value] 的格式，例如 ['color', '#fff']，因此可以多次调用形式①的设置方法
+          wraperSelectors.css(...cssKeyValue); // 还记得数组的 spread 运算吗，当参数为数组时，也可以这样将参数转换为列表
         });
       }
     }
@@ -140,7 +140,7 @@ $.addEvent = wraperSelectors => {
 
 $.wraper = res => {
   let nodeList = []; // 没找到元素时，返回空数组，方便使用数组的方法处理
-  if (res instanceof HTMLElement) {
+  if (res instanceof HTMLElement) { // 如果找到的是一个元素，就放到数组中
     nodeList = [res];
   } else if (res) { // 否则视为匹配了一个列表
     nodeList = [...res];
