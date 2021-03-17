@@ -158,7 +158,7 @@ const routes = [{
     title: 'MVC 简介',
     icon: <MehOutlined />,
   }, {
-    key: '/frame/react',
+    key: '/frame/react/index',
     title: 'React',
     icon: <SmileOutlined />,
   }, {
