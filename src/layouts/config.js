@@ -26,6 +26,8 @@ import {
   FrownOutlined,
   MehOutlined,
   SmileOutlined,
+  AimOutlined,
+  SketchOutlined,
   EditOutlined,
   ProjectOutlined,
   AppstoreAddOutlined,
@@ -158,13 +160,31 @@ const routes = [{
     title: 'MVC 简介',
     icon: <MehOutlined />,
   }, {
-    key: '/frame/react/index',
+    key: '/frame/react',
     title: 'React',
     icon: <SmileOutlined />,
+    children: [{
+      key: '/frame/react/index',
+      title: '基础学习',
+      icon: <AimOutlined />,
+    }, {
+      key: '/frame/react/exercise',
+      title: '动手实践',
+      icon: <SketchOutlined />,
+    }]
   }, {
     key: '/frame/vue',
     title: 'Vue',
     icon: <SmileOutlined />,
+    children: [{
+      key: '/frame/vue/index',
+      title: '基础学习',
+      icon: <AimOutlined />,
+    }, {
+      key: '/frame/vue/exercise',
+      title: '动手实践',
+      icon: <SketchOutlined />,
+    }]
   }, {
     key: '/frame/miniprogram',
     title: '小程序',
@@ -176,7 +196,7 @@ const routes = [{
   }],
 }, {
   key: '/practice',
-  title: '实战练习',
+  title: '实战强化',
   icon: <EditOutlined />,
   children: [{
     key: '/practice/create',

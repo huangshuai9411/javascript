@@ -7,7 +7,7 @@ const doc1 = `
 #### **详细中文教程**
 如果把网上的[ React 中文教程](https://reactjs.bootcss.com/)搬过来，并没有什么意义，所以这里引入链接，并默认所有同学已经把教程了解了一遍。
 
-下面，我们开始实现一个 Hello, world!。
+下面，我们开始实现一个 React 组件。
 
 1. 还记得**综述 > 准备工作**吧？现在 ${reference('node')} 和 ${reference('npm')} 开始派生用场了。我们先在某文件夹打开命令行终端（[参考地址](/overview/prepare)）
 - 执行命令 ${reference('npm i yarn -g')}，全局安装 ${reference('yarn')} 包管理器。
@@ -63,6 +63,7 @@ const code2 = `
 `;
 const doc3 = `
 页面更新后我们继续：
+
 - 给按钮添加一些样式，这时候通过类名来定义，同时需要在 ${reference('App.css')} 文件实现相应的样式。
 `;
 
@@ -107,7 +108,7 @@ const code3 = `
 }
 `;
 const doc4 = `
-页面更新后我们继续：
+接着：
 
 - 按钮上的文字我们希望可以自定义，于是添加组件的参数 text。当 App 组件没有传参时，默认显示“点击次数”。注意，变量需要用花括号括起来，花括号里用到的字符串应当加引号。
 `;
@@ -250,7 +251,7 @@ export default class App extends Component {
 }
 `;
 const doc10 = `
-${reference('componentDidMount')} 是一个 React 生命周期，也是框架固定的钩子函数，在组件加载完成后自动调用。这里用 ${reference('setTimeout')} 模拟一次异步请求，3 秒后将数据同步到 state 中，并将 loading 状态置为 false。${reference('Loading')} 组件接收一个参数 loading，我们注意到当 loading 为 truthy 时会返回一张图片（过渡动画），loading 为 false 时，返回参数 children。children 是什么呢？其实我们可以留意到${reference('Loading')} 组件使用的是**双标签**的形式，与 App 组件使用略有不同，这是 React 框架的一个特点，双标签组件会默认得到一个 children 参数，来引用标签内部的内容，即 children 就是这一坨：
+${reference('componentDidMount')} 是一个 React 生命周期，也是框架固定的钩子函数，在组件加载完成后自动调用。这里用 ${reference('setTimeout')} 模拟一次异步请求，3 秒后将数据同步到 state 中，并将 loading 状态置为 false。${reference('Loading')} 组件接收一个参数 loading，我们注意到当 loading 为 truthy 时会返回一张图片（过渡动画），loading 为 falsy 时，返回参数 children。children 是什么呢？其实我们可以留意到${reference('Loading')} 组件使用的是**双标签**的形式，与 App 组件使用略有不同，这是 React 框架的一个特点，双标签组件会默认得到一个 children 参数，来引用标签内部的内容，即 children 就是这一坨：
 `;
 const code10 = `
 <div className="App">
@@ -258,7 +259,7 @@ const code10 = `
 </div>
 `;
 const doc11 = `
-在真实的项目环境中，${reference('componentDidMount')} 应该是一个真正的请求，比如：
+在真实的项目环境中，${reference('componentDidMount')} 应该包含一个真正的请求，比如：
 `;
 const code11 = `
 ...
@@ -271,8 +272,8 @@ componentDidMount() {
     } else {
       console.error(message); // 将接口的错误信息打印出来
     }
-  }).catch(err => {// 将请求错误信息打印出来
-    console.error(err);
+  }).catch(err => {
+    console.error(err); // 将请求错误信息打印出来
   }).finally(() => { // 无论接口成功还是失败，加载状态都将结束
     this.setState({
       loading: false
@@ -282,7 +283,7 @@ componentDidMount() {
 ...
 `;
 const doc12 = `
-以上就是 react 的基础内容。
+以上就是 react 的基础内容。[马上进行强化学习~](/frame/react/exercise)
 `;
 
 export default {
